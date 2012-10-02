@@ -26,8 +26,7 @@
 
     <name>Todos</name>
     <description>Sample Todos REST+JSON application with JAX-RS/Jersey</description>
-    <url>https://github.com/stormpath/rest-json-jaxrs</url>
-    <inceptionYear>2012</inceptionYear>
+    <url>https://github.com/stormpath/todos-jersey</url>
 
     <licenses>
         <license>
@@ -38,41 +37,23 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:stormpath/rest-json-jaxrs.git</connection>
-        <developerConnection>scm:git:git@github.com:stormpath/rest-json-jaxrs.git</developerConnection>
-        <url>git@github.com:stormpath/rest-json-jaxrs.git</url>
+        <connection>scm:git:git@github.com:stormpath/todos-jersey.git</connection>
+        <developerConnection>scm:git:git@github.com:stormpath/todos-jersey.git</developerConnection>
+        <url>git@github.com:stormpath/todos-jersey.git</url>
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/stormpath/rest-json-jaxrs/issues</url>
+        <url>https://github.com/stormpath/todos-jersey/issues</url>
     </issueManagement>
 
-    <developers>
-        <developer>
-            <id>lhazlewood</id>
-            <name>Les Hazlewood</name>
-            <email>les@stormpath.com</email>
-            <url>http://www.leshazlewood.com</url>
-            <timezone>-8</timezone>
-            <organization>Stormpath, Inc.</organization>
-            <organizationUrl>http://www.stormpath.com</organizationUrl>
-        </developer>
-    </developers>
-
     <properties>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <slf4j.version>1.7.1</slf4j.version>
         <jersey.version>1.14</jersey.version>
 
-        <!-- Test Dependencies: Only required for testing when building.  Not required at runtime: -->
         <jetty.version>8.1.5.v20120716</jetty.version>
-        <groovy.version>1.8.6</groovy.version>
         <logback.version>1.0.7</logback.version>
-        <easymock.version>3.1</easymock.version>
-        <testng.version>6.5.2</testng.version>
-
     </properties>
 
     <dependencies>
@@ -92,31 +73,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-
-        <!-- Test Dependencies: -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>${groovy.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.easymock</groupId>
-            <artifactId>easymock</artifactId>
-            <version>${easymock.version}</version>
-            <scope>test</scope>
+            <scope>runtime</scope>
         </dependency>
 
     </dependencies>
@@ -131,66 +92,6 @@
                     <source>1.6</source>
                     <target>1.6</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <!-- For unit tests: -->
-                <groupId>org.codehaus.gmaven</groupId>
-                <artifactId>gmaven-plugin</artifactId>
-                <version>1.4</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <providerSelection>1.7</providerSelection>
-                    <source>src/main/groovy</source>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.gmaven.runtime</groupId>
-                        <artifactId>gmaven-runtime-1.7</artifactId>
-                        <version>1.3</version>
-                        <exclusions>
-                            <exclusion>
-                                <groupId>org.codehaus.groovy</groupId>
-                                <artifactId>groovy-all</artifactId>
-                            </exclusion>
-                        </exclusions>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-all</artifactId>
-                        <version>${groovy.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.2.2</version>
-                <configuration>
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                    <preparationGoals>clean install</preparationGoals>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <arguments>-Pdocs,stormpath-signature</arguments>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>
             <plugin>
@@ -220,64 +121,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>stormpath-signature</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.4</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>docs</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.8.1</version>
-                        <executions>
-                            <execution>
-                                <id>attach-api-docs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <inherited>true</inherited>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>2.1.2</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <inherited>true</inherited>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>

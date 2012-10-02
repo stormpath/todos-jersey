@@ -15,8 +15,6 @@
  */
 package com.stormpath.samples.todos.controller;
 
-import com.stormpath.samples.todos.resources.Link;
-
 import javax.ws.rs.core.Response;
 import java.net.URI;
 

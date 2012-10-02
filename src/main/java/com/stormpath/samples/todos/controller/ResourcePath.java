@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stormpath.samples.todos.resources;
+package com.stormpath.samples.todos.controller;
 
 import com.stormpath.samples.todos.entity.Entity;
 import com.stormpath.samples.todos.entity.Todo;
