@@ -7,7 +7,7 @@ Stormpath is a User Management API that reduces development time with instant-on
 
 ## Links
 Below are some resources you might find useful!
-- [Stormpath Jersey Sample for API Authentication](http://projects.spring.io/spring-security/)
+- [Stormpath Jersey Sample for API Authentication](https://github.com/stormpath/stormpath-jersey-sample)
 
 **Stormpath Java Support**
 - [Stormpath API Docs for Java](https://docs.stormpath.com/java/apidocs/)
